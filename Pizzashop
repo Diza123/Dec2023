@@ -1,0 +1,92 @@
+Create database Pizzashop1;
+USE Pizzashop1;
+
+Create table Sandwiches (SID varchar(10) Primary key, SNAME VARCHAR (50), 
+SPRICE INT NOT NULL); 
+
+insert into Sandwiches (sid,sname,sprice) 
+values ('S1','Chicken Avocado',5000),
+('S2','Italian Club',5700),
+('S3','Chicken Bistro',5700),
+('S4','Egg',4000),
+('S5','Tuna',5000);
+
+Create table Pizzas (PID varchar(10) Primary key, PNAME VARCHAR (50), 
+PPRICE INT NOT NULL); 
+
+insert into Pizzas (pid,pname,pprice) 
+values ('P1','Pepperoni Passion',9000),
+('P2','Margherita',7500),
+('P3','Chicken BBQ',8000),
+('P4','Vegetarian',8000),
+('P5','The GOAT',8500),
+('P6','LA Carne',10000),
+('P7','Bianca',9000),
+('P8','Around the World',8700),
+('P9','Pollo',8000),
+('P10','Mo Honey Mo Problems',8000);
+
+Create table Customers (CID varchar(10) Primary key, CFirstNAME VARCHAR (50), Clastname VARCHAR (50)); 
+
+insert into Customers (cid,CFirstNAME,Clastname) 
+values ('C1','James','Smith'),
+('C2','Susan','Jennings'),
+('C3','Anne','Jacobs'),
+('C4','Aisha','Hassan'),
+('C5','Sana','Mohammed'),
+('C6','Thomas','Billings'),
+('C7','Ummi','Ahmed'),
+('C8','Olutunde','Simons'),
+('C9','Jennifer','Stevens'),
+('C10','Uche','Piker');
+
+Create table Customerlocation (CID varchar(10) Primary key, LID VARCHAR (10)); 
+
+insert into Customerlocation (cid,lid) 
+values ('C1','L5'),
+('C2','L5'),
+('C3','L5'),
+('C4','L5'),
+('C5','L4'),
+('C6','L1'),
+('C7','L3'),
+('C8','L2'),
+('C9','L2'),
+('C10','L2');
+
+
+Create table CityLocations (LID varchar(10) Primary key, Locations VARCHAR (50)); 
+
+insert into CityLocations (lid,locations) 
+values ('L1','Wuse2'),
+('L2','Maitama'),
+('L3','Asokoro'),
+('L4','Gwarimpa'),
+('L5','Utako');
+
+Create table Favourites (CID varchar(10) Primary key, PID VARCHAR (10)); 
+
+insert into Favourites (cid,pid) 
+values ('C1','P2'),
+('C2','P3'),
+('C3','P7'),
+('C4','P6'),
+('C5','P6'),
+('C6','P6'),
+('C7','P5'),
+('C8','P1'),
+('C9','P7'),
+('C10','P1');
+
+
+Alter table Favourites
+add constraint
+FK_PID
+foreign key(pid)
+References pizzas (PID);
+
+Alter table Customerlocation
+add constraint
+FK_LID
+foreign key(lid)
+References CityLocations (lid);
